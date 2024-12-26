@@ -21,6 +21,7 @@ public class CaseDetailsController {
     @GetMapping("/get")
     public ResponseEntity<Map<String, Object>> getCaseDetails(@RequestParam String activityLevel){
         try{
+            
             Map<String,Object> res = caseDetailsService.getCaseDetails(activityLevel);
             return new ResponseEntity<>(res,HttpStatus.OK);
 
