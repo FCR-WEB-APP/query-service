@@ -1,29 +1,34 @@
-package com.example.Query.Entity;
+package com.example.Query.Dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CaseDetails {
-
+public class Search {
     private Long caseRefNo;
     private String groupName;
     private String divisionName;
     private String activityLevel;
     private String status;
     private String assignedTo;
+
+   // @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createdDate;
+
+    //@JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updatedDate;
     private String planing;
     private String fieldWork;
+
 
     public Long getCaseRefNo() {
         return caseRefNo;
@@ -48,7 +53,6 @@ public class CaseDetails {
     public void setDivisionName(String divisionName) {
         this.divisionName = divisionName;
     }
-
 
     public String getActivityLevel() {
         return activityLevel;
