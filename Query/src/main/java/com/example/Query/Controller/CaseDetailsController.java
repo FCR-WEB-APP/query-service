@@ -78,11 +78,33 @@ public class CaseDetailsController {
     public ResponseEntity<Map<String,Object>> search(@RequestBody Search search) {
         try {
             Map<String, Object> res = caseDetailsService.search(search);
+
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(Map.of("message", "Failed to search", "error", e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+
+    @GetMapping("/download/Search")
+    public ResponseEntity<byte[]> downloadExcelSearch(@RequestBody Search search) {
+        try {
+            Map<String, Object> res = caseDetailsService.getCaseDetails(String.valueOf(search));
+
+            // Convert the data to Excel format
+            byte[] excelFile = caseDetailsService.createExcelFile(res);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "attachment; filename=CaseDetailsSearch.xlsx");
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(excelFile);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error generating Excel file", e);
+        }
     }
 
 

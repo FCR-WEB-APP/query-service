@@ -45,7 +45,7 @@ public class CaseDetailsService {
     }
     public byte[] createExcelFile(Map<String, Object> res) {
         try (Workbook workbook = new XSSFWorkbook()) {
-            Sheet sheet = workbook.createSheet("Case Details");
+            Sheet sheet = workbook.createSheet("Case Details Search");
 
             // Create the header row
             Row headerRow = sheet.createRow(0);
@@ -60,21 +60,21 @@ public class CaseDetailsService {
             headerRow.createCell(8).setCellValue("Planning");
             headerRow.createCell(9).setCellValue("Field Work");
 
-            List<CaseDetails> caseDetailsList = (List<CaseDetails>) res.get("data");
+            List<Search> searchList = (List<Search>) res.get("data");
 
             int rowNum = 1;
-            for (CaseDetails caseDetails : caseDetailsList) {
+            for (Search search : searchList) {
                 Row row = sheet.createRow(rowNum++);
-                row.createCell(0).setCellValue(caseDetails.getCaseRefNo());
-                row.createCell(1).setCellValue(caseDetails.getGroupName());
-                row.createCell(2).setCellValue(caseDetails.getDivisionName());
-                row.createCell(3).setCellValue(caseDetails.getActivityLevel());
-                row.createCell(4).setCellValue(caseDetails.getStatus());
-                row.createCell(5).setCellValue(caseDetails.getAssignedTo());
-                row.createCell(6).setCellValue(caseDetails.getCreatedDate().toString());
-                row.createCell(7).setCellValue(caseDetails.getUpdatedDate().toString());
-                row.createCell(8).setCellValue(caseDetails.getPlaning());
-                row.createCell(9).setCellValue(caseDetails.getFieldWork());
+                row.createCell(0).setCellValue(search.getCaseRefNo());
+                row.createCell(1).setCellValue(search.getGroupName());
+                row.createCell(2).setCellValue(search.getDivisionName());
+                row.createCell(3).setCellValue(search.getActivityLevel());
+                row.createCell(4).setCellValue(search.getStatus());
+                row.createCell(5).setCellValue(search.getAssignedTo());
+                row.createCell(6).setCellValue(search.getCreatedDate().toString());
+                row.createCell(7).setCellValue(search.getUpdatedDate().toString());
+                row.createCell(8).setCellValue(search.getPlaning());
+                row.createCell(9).setCellValue(search.getFieldWork());
             }
 
             // Write the Excel file to a byte array output stream
