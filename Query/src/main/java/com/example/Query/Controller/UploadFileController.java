@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/uploadFile")
+@RequestMapping("/api/uploadFile")
 public class UploadFileController {
 
     private final UploadFileService uploadFileService;
