@@ -28,12 +28,13 @@ public class ObligourDao {
             Obligour obligour=new Obligour();
             obligour.setObligourId(rs.getLong("OBLIGOUR_ID"));
             obligour.setCaseRefNo(rs.getLong("CASE_REF_NO"));
-            obligour.setAction(rs.getString("ACTION"));
             obligour.setCifId(rs.getLong("CIF_ID"));
             obligour.setPremId(rs.getLong("PREM_ID"));
             obligour.setDivisionName(rs.getString("DIVISION_NAME"));
-            obligour.setIn_Time(rs.getDate("IN_TIME"));
-            obligour.setOut_Time(rs.getDate("OUT_TIME"));
+            obligour.setAssignTo(rs.getString("Assign_To"));
+            obligour.setStatus(rs.getString("Status"));
+            obligour.setCreatedDate(rs.getTimestamp("created_Date").toLocalDateTime());
+            obligour.setUpdatedDate(rs.getTimestamp("Updated_Date").toLocalDateTime());
             return obligour;
         }
     }

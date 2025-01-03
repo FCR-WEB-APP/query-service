@@ -31,6 +31,11 @@ public class QueryDao {
             query.setChildId(rs.getLong("Child_Id"));
             query.setQueryDescription(rs.getString("Query_Description"));
             query.setResponse(rs.getString("Response"));
+            query.setCaseRefNo(rs.getString("Case_Ref_No"));
+            query.setAssignTo(rs.getString("Assign_To"));
+            query.setStatus(rs.getString("Status"));
+            query.setCreatedDate(rs.getTimestamp("Created_Date").toLocalDateTime());
+            query.setUpdatedDate(rs.getTimestamp("Updated_Date").toLocalDateTime());
             return query;
         }
     }
