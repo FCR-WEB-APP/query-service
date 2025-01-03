@@ -28,7 +28,13 @@ public class ChildReviewDao {
             ChildReview childReview=new ChildReview();
             childReview.setChildId(rs.getLong("Child_Id"));
             childReview.setObligourId(rs.getLong("Obligour_Id"));
-            childReview.setAssign_To(rs.getString("Assign_To"));
+            childReview.setAssignTo(rs.getString("Assign_To"));
+            childReview.setCaseRefNo(rs.getString("Case_Ref_No"));
+            childReview.setStatus(rs.getString("Status"));
+            childReview.setCreatedBy(rs.getString("Created_By"));
+            childReview.setUpdatedBy(rs.getString("Updated_By"));
+            childReview.setCreatedDate(rs.getTimestamp("Created_Date").toLocalDateTime());
+            childReview.setUpdatedDate(rs.getTimestamp("Updated_Date").toLocalDateTime());
             return childReview;
         }
     }
