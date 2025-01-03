@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("grpAnddiv")
+@RequestMapping("/api/grpAnddiv")
 public class GroupAndDivisionController {
 
     private final GroupAndDivisionService groupAndDivisionService;

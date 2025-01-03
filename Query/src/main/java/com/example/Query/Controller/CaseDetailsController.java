@@ -11,13 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/caseDetails")
+@RequestMapping("/api/caseDetails")
 public class CaseDetailsController {
 
     private final CaseDetailsService caseDetailsService;
@@ -50,15 +48,15 @@ public class CaseDetailsController {
         }
     }
 
+
     @GetMapping("/download")
     public ResponseEntity<byte[]> downloadExcel(@RequestParam String activityLevel) {
         try {
             Map<String, Object> res = caseDetailsService.getCaseDetails(activityLevel);
 
             // Convert the data to Excel format
-            byte[] excelFile = caseDetailsService.createExcelFile(res);
+            byte[] excelFile = caseDetailsService.createExcelFileForCaseDetails(res);
 
-            // Set the content type and headers for Excel file download
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "attachment; filename=CaseDetails" + activityLevel + ".xlsx");
             return ResponseEntity.ok()
